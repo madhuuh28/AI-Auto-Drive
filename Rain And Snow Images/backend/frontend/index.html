@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b10">
+  <title>EV Adaptive Cluster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/frontend/styles.css">
+</head>
+<body>
+  <main class="cluster">
+    <header class="top-strip">
+      <div class="road-type-tag"><span class="dot" id="roadTypeDot"></span><span id="roadTypeLabel">Highway · Motorway</span></div>
+      <div class="top-item"><span class="label">GPS LOCATION</span><span class="value num" id="gpsValue">17.0575° N, 79.9762° E</span></div>
+      <div class="top-item"><span class="label">ELEVATION · SEA LEVEL</span><span class="value num" id="elevValue">142 <span class="unit">m</span></span></div>
+      <div class="top-item"><span class="label">LOCAL TIME</span><span class="value num" id="timeValue">--:--</span></div>
+      <div class="top-item status-item"><span class="label">SYSTEM</span><span class="value"><i id="health-dot"></i><span id="health-text">CONNECTING</span></span></div>
+    </header>
+
+    <section class="main-grid">
+      <div class="col">
+        <section class="panel">
+          <div class="ptitle">BATTERY</div>
+          <div class="battery-row"><div class="ring"><svg viewBox="0 0 64 64" width="64" height="64"><circle cx="32" cy="32" r="27" fill="none" stroke="#232b36" stroke-width="6"/><circle id="battRingFg" cx="32" cy="32" r="27" fill="none" stroke="#4fd1c5" stroke-width="6" stroke-linecap="round" stroke-dasharray="169.6" stroke-dashoffset="30"/></svg><div class="ring-label num" id="battPct">82%</div></div><div class="batt-meta"><div class="range num"><span id="battRange">318</span><span class="unit">km left</span></div><div class="sub">Efficiency 5.6 km/kWh</div></div></div>
+        </section>
+        <section class="panel">
+          <div class="ptitle">ROAD CONDITION · CURRENT</div>
+          <div class="cond-row"><div class="cond-icon" id="condIconWrap"><svg viewBox="0 0 24 24" fill="none" id="condIconSvg" stroke="#4fd1c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M5 17l3-9h8l3 9"/></svg></div><div><div class="cond-name" id="condName">Dry asphalt</div><div class="cond-conf" id="condConf">Confidence 96%</div></div></div>
+          <div class="divider"></div><div class="ptitle">PREDICTED · NEXT 500M</div>
+          <div class="cond-row"><div class="cond-icon prediction-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f2a65a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-11 4 7 3-4 6 8"/></svg></div><div><div class="cond-name" id="predName">Gradient rising</div><div class="cond-conf" id="predConf">Grade trending +4%</div></div></div>
+        </section>
+      </div>
+
+      <section class="speed-panel">
+        <div class="mode-banner" id="modeBanner"><span class="dot" id="modeDot"></span><span id="modeText">HIGHWAY MODE</span></div>
+        <div class="speed-arc-wrap"><svg viewBox="0 0 220 220"><circle cx="110" cy="110" r="96" fill="none" stroke="#1a222c" stroke-width="10" stroke-dasharray="301.5" stroke-dashoffset="75.4" stroke-linecap="round"/><circle id="speedArcFg" cx="110" cy="110" r="96" fill="none" stroke="#4fd1c5" stroke-width="10" stroke-dasharray="301.5" stroke-dashoffset="301.5" stroke-linecap="round"/></svg><div class="speed-value"><div class="num-val num" id="speedValue">96</div><div class="num-unit">KM/H</div></div></div>
+        <div class="gear-row" id="gearRow"><button class="gear" data-gear="P">P</button><button class="gear" data-gear="R">R</button><button class="gear" data-gear="N">N</button><button class="gear active" data-gear="D">D</button></div>
+        <div class="cluster-actions"><label class="upload-action">Analyze image<input id="file-input" type="file" accept="image/png,image/jpeg,image/webp" hidden></label><button id="analyze-button" class="analyze-button" disabled>Run AI</button></div>
+      </section>
+
+      <div class="col">
+        <section class="panel"><div class="ptitle">POWER TO WHEELS</div><div class="car-diagram"><svg viewBox="0 0 60 100" fill="none"><rect x="14" y="6" width="32" height="88" rx="12" stroke="#3a4552" stroke-width="2"/><rect x="4" y="12" width="10" height="16" rx="3" id="wheelFL"/><rect x="46" y="12" width="10" height="16" rx="3" id="wheelFR"/><rect x="4" y="72" width="10" height="16" rx="3" id="wheelRL"/><rect x="46" y="72" width="10" height="16" rx="3" id="wheelRR"/></svg></div><div class="power-splits"><div class="power-split-item"><div class="pct num" id="frontPct">30%</div><div class="axle">FRONT AXLE</div></div><div class="power-split-item"><div class="pct num" id="rearPct">70%</div><div class="axle">REAR AXLE</div></div></div><div class="power-bar-track"><div id="powerBarFront" class="power-bar-fill"></div><div id="powerBarRear" class="power-bar-fill rear"></div></div></section>
+        <section class="panel"><div class="ptitle">CABIN CLIMATE CONTROL</div><div class="climate-row"><div class="climate-temp num"><span id="cabinTemp">22</span><span class="unit">°C</span></div><span class="climate-icon">❄</span></div><div class="climate-sub"><span>Fan · Auto (2)</span><span>A/C On</span></div><div class="divider"></div><div class="ptitle">OUTSIDE CLIMATE</div><div class="climate-row"><div class="climate-temp num small"><span id="outsideTemp">31</span><span class="unit">°C</span></div><div class="cond-name outside" id="outsideCond">Clear</div></div></section>
+      </div>
+    </section>
+
+    <div class="drive-caption" id="driveCaption">Select a terrain mode or upload an image for AI analysis.</div>
+    <div class="demo-strip"><span class="demo-label">SIMULATE TERRAIN</span><button class="demo-btn active" data-mode="highway">Highway</button><button class="demo-btn" data-mode="hill">Hill</button><button class="demo-btn" data-mode="offroad">Off-road</button><button class="demo-btn" data-mode="gravel">Gravel</button><button class="demo-btn" data-mode="sand">Sand</button><button class="demo-btn" data-mode="snow">Snow</button><button class="demo-btn live-button" id="livedriveBtn">▶ Start live drive</button></div>
+    <div class="prediction-readout" id="predictionReadout" aria-live="polite">AI prediction results will appear here after image analysis.</div>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/frontend/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# Raw training datasets
+/clean_dataset/
+/Flood Images/
+/Mountain And Hill Images/
+
+# AAU RainSnow camera frames and videos
+/Rain And Snow Images/Egensevej/
+/Rain And Snow Images/Hadsundvej/
+/Rain And Snow Images/Hasserisvej/
+/Rain And Snow Images/Hjorringvej/
+/Rain And Snow Images/Hobrovej/
+/Rain And Snow Images/Ostre/
+/Rain And Snow Images/Ringvej/
+/Rain And Snow Images/aaurainsnow/Egensevej/
+/Rain And Snow Images/aaurainsnow/Hadsundvej/
+/Rain And Snow Images/aaurainsnow/Hasserisvej/
+/Rain And Snow Images/aaurainsnow/Hjorringvej/
+/Rain And Snow Images/aaurainsnow/Hobrovej/
+/Rain And Snow Images/aaurainsnow/Ostre/
+/Rain And Snow Images/aaurainsnow/Ringvej/
+
+# Python cache files
+__pycache__/
+*.py[cod]

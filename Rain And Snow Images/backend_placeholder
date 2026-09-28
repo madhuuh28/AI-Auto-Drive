@@ -1,0 +1,10 @@
+Create this file:
+
+static/index.html
+
+Paste the complete EV Adaptive Cluster HTML you provided into it, then restart the server:
+
+python -m uvicorn main:app --host 127.0.0.1 --port 8000 --reload
+
+Open:
+http://127.0.0.1:8000/
